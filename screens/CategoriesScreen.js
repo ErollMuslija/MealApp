@@ -3,11 +3,21 @@ import { FlatList } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import CategoryTitle from '../components/CategoryTitle';
 
-function renderItem (item) {
-    return <CategoryTitle title={item.item.title} color={item.item.color}/>
-}
 
-const CategoriesScreen = () => {
+
+const CategoriesScreen = ({navigation}) => {
+
+    function renderItem (item) {
+        function pressHandler(){
+            navigation.navigate('Meal Details', {
+                categoryId: item.item.id,
+                categoryTitle: item.item.title,
+                categoryColor: item.item.color
+            });
+        }
+    
+        return <CategoryTitle title={item.item.title} color={item.item.color} onPress={pressHandler}/>
+    }
 
     return <FlatList
     data={CATEGORIES}
