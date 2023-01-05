@@ -1,22 +1,40 @@
-import {View, Text, StyleSheet, FlatList} from 'react-native'
+import { useLayoutEffect } from 'react';
+import {View, StyleSheet, FlatList} from 'react-native'
 import MealItem from '../components/MealItem';
-import { MEALS } from '../data/dummy-data';
+import { MEALS, CATEGORIES } from '../data/dummy-data';
 
-const MealsOverviewScreen = ({route}) => {
-    const {categoryId, categoryTitle, categoryColor } = route.params
+const MealsOverviewScreen = ({route, navigation}) => {
+    const {categoryId, categoryColor } = route.params
 
     const displayMeal = MEALS.filter(item => {
         return item.categoryIds.indexOf(categoryId) >= 0;
     })
 
+    useLayoutEffect(() => {
+        const categoryTitle = CATEGORIES.find((category) => category.id === categoryId).title
+
+        navigation.setOptions({
+            title: categoryTitle
+        })
+    }, [categoryId, navigation])
+
+  
+
     function renderMealItem (itemData) {
-        return <MealItem title={itemData.item.title}/>
+        const mealItemPropfs = {
+            title: itemData.item.title,
+            image : itemData.item.imageUrl,
+            duration: itemData.item.duration,
+            complexity: itemData.item.complexity,
+            affordability: itemData.item.affordability
+        }
+        return <MealItem {...mealItemPropfs}/>
     }
 
     return (
         <View style={MealsOverviewScreenStyle.container}>
-                <FlatList data={displayMeal} keyExtractor={(item)=> item.id}
-                renderItem={renderMealItem}/>
+            <FlatList data={displayMeal} keyExtractor={(item)=> item.id}
+            renderItem={renderMealItem}/>
         </View>
     )
 }

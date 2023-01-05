@@ -9,7 +9,7 @@ const CategoriesScreen = ({navigation}) => {
 
     function renderItem (item) {
         function pressHandler(){
-            navigation.navigate('Meal Details', {
+            navigation.navigate('MealDetails', {
                 categoryId: item.item.id,
                 categoryTitle: item.item.title,
                 categoryColor: item.item.color

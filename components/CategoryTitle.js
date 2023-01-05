@@ -24,10 +24,7 @@ const CategoryTitleStyle = StyleSheet.create({
         borderRadius: 8,
         elevation: 4,
         shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
+        shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         overflow: Platform.OS === 'android' ? 'hidden' : 'visible'
