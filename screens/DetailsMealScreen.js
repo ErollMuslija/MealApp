@@ -4,6 +4,7 @@ import { MEALS } from '../data/dummy-data';
 import MealDetails from '../components/MealDetails';
 import SubTitle from '../components/MealDetails/SubTitle';
 import List from '../components/MealDetails/List';
+import IconButton from '../components/IconButton';
 
 const DetailMealScreen = ({route, navigation}) => {
 
@@ -20,7 +21,7 @@ const DetailMealScreen = ({route, navigation}) => {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => {
-                return <Button title='Type me' onPress={headerButtonPress}/>
+                return <IconButton icon={'star'} onPress={headerButtonPress} color={'white'}/>
             }
         });
     }, [navigation, headerButtonPress])
