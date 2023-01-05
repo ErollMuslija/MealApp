@@ -1,7 +1,8 @@
-import {View, StyleSheet, Image, Text} from 'react-native'
+import {View, StyleSheet, Image, Text, ScrollView} from 'react-native'
 import { MEALS } from '../data/dummy-data';
 import MealDetails from '../components/MealDetails';
 import SubTitle from '../components/MealDetails/SubTitle';
+import List from '../components/MealDetails/List';
 
 const DetailMealScreen = ({route}) => {
 
@@ -18,15 +19,17 @@ const DetailMealScreen = ({route}) => {
     }
 
     return (
+    <ScrollView>
         <View style={DetailMealScreenStyle.container}>
             <Image source={{uri: imageUrl}} style={DetailMealScreenStyle.image}/>
             <Text style={DetailMealScreenStyle.title}>{title}</Text>
             <MealDetails textSyte={DetailMealScreenStyle.textStyle} {...mealDetailsProps}/>
             <SubTitle>Ingredients</SubTitle>
-            {selectedMeals.ingredients.map(item => <Text key={item}>{item}</Text>)}
+            <List data={selectedMeals.ingredients}/>
             <SubTitle>Steps</SubTitle>
-            {selectedMeals.steps.map(item => <Text key={item}>{item}</Text>)}
+            <List data={selectedMeals.steps}/>
         </View>
+    </ScrollView>
     )
 }
 
