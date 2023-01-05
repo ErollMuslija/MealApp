@@ -22,7 +22,7 @@ const SubTitleStyle = StyleSheet.create({
         borderBottomWidth: 2,
         padding: 6,
         marginVertical: 4,
-        marginHorizontal: 24
+        marginHorizontal: 12
     }
 
 })

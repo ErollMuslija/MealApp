@@ -19,15 +19,19 @@ const DetailMealScreen = ({route}) => {
     }
 
     return (
-    <ScrollView>
+    <ScrollView style={DetailMealScreenStyle.rootContainer}>
         <View style={DetailMealScreenStyle.container}>
             <Image source={{uri: imageUrl}} style={DetailMealScreenStyle.image}/>
             <Text style={DetailMealScreenStyle.title}>{title}</Text>
             <MealDetails textSyte={DetailMealScreenStyle.textStyle} {...mealDetailsProps}/>
-            <SubTitle>Ingredients</SubTitle>
-            <List data={selectedMeals.ingredients}/>
-            <SubTitle>Steps</SubTitle>
-            <List data={selectedMeals.steps}/>
+            <View style={DetailMealScreenStyle.listOuterContainer}>
+                <View style={DetailMealScreenStyle.listCintainer}>
+                    <SubTitle>Ingredients</SubTitle>
+                    <List data={selectedMeals.ingredients}/>
+                    <SubTitle>Steps</SubTitle>
+                    <List data={selectedMeals.steps}/>
+                </View>
+            </View>
         </View>
     </ScrollView>
     )
@@ -36,6 +40,9 @@ const DetailMealScreen = ({route}) => {
 export default DetailMealScreen;
 
 const DetailMealScreenStyle = StyleSheet.create({
+    rootContainer:{
+        marginBottom: 32
+    },
     container: {
         flex: 1,
     },
@@ -56,5 +63,11 @@ const DetailMealScreenStyle = StyleSheet.create({
     },
     textStyle:{
         color: 'white'
+    },
+    listCintainer:{
+        width: '80%',
+    },
+    listOuterContainer:{
+        alignItems: 'center'
     }
 })
