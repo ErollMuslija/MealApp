@@ -22,7 +22,13 @@ const MealsOverviewScreen = ({route, navigation}) => {
 
     function renderMealItem (itemData) {
         function presHandler(){
-            navigation.navigate('DetailMeal')
+            navigation.navigate('DetailMeal',{
+                mealId: itemData.item.id,
+                image : itemData.item.imageUrl,
+                duration: itemData.item.duration,
+                complexity: itemData.item.complexity,
+                affordability: itemData.item.affordability,
+            })
         }
 
         const mealItemPropfs = {
@@ -31,7 +37,7 @@ const MealsOverviewScreen = ({route, navigation}) => {
             duration: itemData.item.duration,
             complexity: itemData.item.complexity,
             affordability: itemData.item.affordability,
-            presHandler: presHandler
+            presHandler: presHandler,
         }
         return <MealItem {...mealItemPropfs}/>
     }

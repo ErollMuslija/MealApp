@@ -1,6 +1,14 @@
 import {View, Text, StyleSheet, Pressable, Image, Platform} from 'react-native'
+import MealDetails from './MealDetails';
 
 const MealItem = ({title, image, duration, complexity, affordability, presHandler}) => {
+    
+    const mealDetailsProps = {
+        duration,
+        complexity,
+        affordability,
+    }
+    
     return (
         <View style={MealItemStyle.mealItem}>
             <View style={MealItemStyle.innerContainer}>
@@ -12,11 +20,7 @@ const MealItem = ({title, image, duration, complexity, affordability, presHandle
                 <Image source={{uri: image}} style={MealItemStyle.imageStyle}/>
             </View>
             <Text style={MealItemStyle.title}>{title}</Text>
-            <View style={MealItemStyle.details}>
-                <Text style={MealItemStyle.detailItems}>{duration}m</Text>
-                <Text style={MealItemStyle.detailItems}>{complexity.toUpperCase()}</Text>
-                <Text style={MealItemStyle.detailItems}>{affordability.toUpperCase()}</Text>
-            </View>
+            <MealDetails {...mealDetailsProps}/>
             </Pressable>
             </View> 
         </View>
